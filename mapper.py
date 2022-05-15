@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 import sys
+import string
+
+stop_words = ['the', 'and']
+
+translator = string.maketrans(string.punctuation, ' '*len(string.punctuation))
 
 # get all lines from stdin
 for line in sys.stdin:
     # remove leading and trailing whitespace
-    line = line.strip()
+    line = line.strip().lower()
+    line = line.translate(translator)
 
     # split the line into words; splits on any whitespace
     words = line.split()
